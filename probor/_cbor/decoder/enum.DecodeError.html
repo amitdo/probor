@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `DecodeError` enum in crate `probor`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, DecodeError">
+
+    <title>probor::_cbor::decoder::DecodeError - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>probor</a>::<wbr><a href='../index.html'>_cbor</a>::<wbr><a href='index.html'>decoder</a></p><script>window.sidebarCurrent = {name: 'DecodeError', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>probor</a>::<wbr><a href='../index.html'>_cbor</a>::<wbr><a href='index.html'>decoder</a>::<wbr><a class='enum' href=''>DecodeError</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../../src/cbor/decoder.rs.html#159-185' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum DecodeError {
+    DuplicateKey(<a class='enum' href='../../../probor/_cbor/value/enum.Key.html' title='probor::_cbor::value::Key'>Key</a>),
+    IntOverflow(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>),
+    InvalidKey(<a class='enum' href='../../../probor/_cbor/value/enum.Value.html' title='probor::_cbor::value::Value'>Value</a>),
+    InvalidTag(<a class='enum' href='../../../probor/_cbor/value/enum.Value.html' title='probor::_cbor::value::Value'>Value</a>),
+    InvalidUtf8(<a class='struct' href='https://doc.rust-lang.org/nightly/core/str/struct.Utf8Error.html' title='core::str::Utf8Error'>Utf8Error</a>),
+    IoError(<a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>),
+    TooLong {
+        max: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,
+        actual: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    TooNested,
+    UnexpectedEOF,
+    UnexpectedType {
+        datatype: <a class='enum' href='../../../probor/_cbor/types/enum.Type.html' title='probor::_cbor::types::Type'>Type</a>,
+        info: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    },
+    UnexpectedBreak,
+    Other(<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a> + 'static + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a>&gt;),
+}</pre><h2 class='variants'>Variants</h2>
+<span id='variant.DuplicateKey' class='variant'><span id='DuplicateKey.v' class='invisible'><code>DuplicateKey(<a class='enum' href='../../../probor/_cbor/value/enum.Key.html' title='probor::_cbor::value::Key'>Key</a>)</code></span></span><div class='docblock'><p>An object contains the same key multiple times</p>
+</div><span id='variant.IntOverflow' class='variant'><span id='IntOverflow.v' class='invisible'><code>IntOverflow(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>)</code></span></span><div class='docblock'><p>The signed integer is greater that its max value</p>
+</div><span id='variant.InvalidKey' class='variant'><span id='InvalidKey.v' class='invisible'><code>InvalidKey(<a class='enum' href='../../../probor/_cbor/value/enum.Value.html' title='probor::_cbor::value::Value'>Value</a>)</code></span></span><div class='docblock'><p>The decoded <code>Value</code> can not serve as a <code>Key</code> in an object</p>
+</div><span id='variant.InvalidTag' class='variant'><span id='InvalidTag.v' class='invisible'><code>InvalidTag(<a class='enum' href='../../../probor/_cbor/value/enum.Value.html' title='probor::_cbor::value::Value'>Value</a>)</code></span></span><div class='docblock'><p>The type of <code>Value</code> is not what is expected for a <code>Tag</code></p>
+</div><span id='variant.InvalidUtf8' class='variant'><span id='InvalidUtf8.v' class='invisible'><code>InvalidUtf8(<a class='struct' href='https://doc.rust-lang.org/nightly/core/str/struct.Utf8Error.html' title='core::str::Utf8Error'>Utf8Error</a>)</code></span></span><div class='docblock'><p>The string is not encoded in UTF-8</p>
+</div><span id='variant.IoError' class='variant'><span id='IoError.v' class='invisible'><code>IoError(<a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>)</code></span></span><div class='docblock'><p>Some I/O error</p>
+</div><span id='variant.TooLong' class='variant'><span id='TooLong.v' class='invisible'><code>TooLong</code></span></span><div class='docblock'><p>The maximum configured length is exceeded</p>
+</div><span class='docblock autohide sub-variant' id='variant.TooLong.fields'><h3 class='fields'>Fields of <code>TooLong</code></h3>
+
+                           <table><tr><td id='variant.TooLong.field.max'><span id='TooLong.v.max.v' class='invisible'><code>max:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code></span></td><td></td></tr><tr><td id='variant.TooLong.field.actual'><span id='TooLong.v.actual.v' class='invisible'><code>actual:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></span></td><td></td></tr></table></span><span id='variant.TooNested' class='variant'><span id='TooNested.v' class='invisible'><code>TooNested</code></span></span><div class='docblock'><p><code>Value</code>s are nested deeper than the configured maximum</p>
+</div><span id='variant.UnexpectedEOF' class='variant'><span id='UnexpectedEOF.v' class='invisible'><code>UnexpectedEOF</code></span></span><div class='docblock'><p>The end of file has been encountered unexpectedly</p>
+</div><span id='variant.UnexpectedType' class='variant'><span id='UnexpectedType.v' class='invisible'><code>UnexpectedType</code></span></span><div class='docblock'><p>And unexpected type has been encountered</p>
+</div><span class='docblock autohide sub-variant' id='variant.UnexpectedType.fields'><h3 class='fields'>Fields of <code>UnexpectedType</code></h3>
+
+                           <table><tr><td id='variant.UnexpectedType.field.datatype'><span id='UnexpectedType.v.datatype.v' class='invisible'><code>datatype:&nbsp;<a class='enum' href='../../../probor/_cbor/types/enum.Type.html' title='probor::_cbor::types::Type'>Type</a></code></span></td><td></td></tr><tr><td id='variant.UnexpectedType.field.info'><span id='UnexpectedType.v.info.v' class='invisible'><code>info:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></span></td><td></td></tr></table></span><span id='variant.UnexpectedBreak' class='variant'><span id='UnexpectedBreak.v' class='invisible'><code>UnexpectedBreak</code></span></span><div class='docblock'><p>A break was encountered at some unexpected point while
+decoding an indefinite object.</p>
+</div><span id='variant.Other' class='variant'><span id='Other.v' class='invisible'><code>Other(<a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a> + 'static + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html' title='core::marker::Sync'>Sync</a>&gt;)</code></span></span><div class='docblock'><p>Some other error.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/cbor/decoder.rs.html#237-254' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a> for <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/cbor/decoder.rs.html#256-282' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.description' class='method'><span id='description.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html#tymethod.description' class='fnname'>description</a>(&amp;self) -&gt; &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></span></h4>
+<div class='docblock'><p>A short description of the error. <a href="https://doc.rust-lang.org/nightly/std/error/trait.Error.html#tymethod.description">Read more</a></p>
+</div><h4 id='method.cause' class='method'><span id='cause.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html#method.cause' class='fnname'>cause</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>The lower-level cause of this error, if any. <a href="https://doc.rust-lang.org/nightly/std/error/trait.Error.html#method.cause">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>&gt; for <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/cbor/decoder.rs.html#284-288' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from' class='method'><span id='from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(e: <a class='struct' href='https://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>) -&gt; <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span></h4>
+</div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.FromUtf8Error.html' title='collections::string::FromUtf8Error'>FromUtf8Error</a>&gt; for <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/cbor/decoder.rs.html#290-294' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from-1' class='method'><span id='from.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(e: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.FromUtf8Error.html' title='collections::string::FromUtf8Error'>FromUtf8Error</a>) -&gt; <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span></h4>
+</div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/core/str/struct.Utf8Error.html' title='core::str::Utf8Error'>Utf8Error</a>&gt; for <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/cbor/decoder.rs.html#296-300' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from-2' class='method'><span id='from.v-2' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(e: <a class='struct' href='https://doc.rust-lang.org/nightly/core/str/struct.Utf8Error.html' title='core::str::Utf8Error'>Utf8Error</a>) -&gt; <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span></h4>
+</div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;<a class='enum' href='../../../probor/_cbor/slice/enum.ReadSliceError.html' title='probor::_cbor::slice::ReadSliceError'>ReadSliceError</a>&gt; for <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/cbor/decoder.rs.html#302-309' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.from-3' class='method'><span id='from.v-3' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#tymethod.from' class='fnname'>from</a>(e: <a class='enum' href='../../../probor/_cbor/slice/enum.ReadSliceError.html' title='probor::_cbor::slice::ReadSliceError'>ReadSliceError</a>) -&gt; <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span></h4>
+</div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../../probor/_cbor/enum.DecodeError.html' title='probor::_cbor::DecodeError'>DecodeError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../../src/cbor/decoder.rs.html#158' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class='method'><span id='fmt.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>Error</a>&gt;</code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "probor";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>
